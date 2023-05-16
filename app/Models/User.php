@@ -57,7 +57,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function routeNotificationForSlack($notification)
     {
-        return 'https://hooks.slack.com/services/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';
+        return;
     }
     
     public function requests(){
