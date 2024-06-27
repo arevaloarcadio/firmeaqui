@@ -69,7 +69,8 @@ class DocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
         $resource = ApiHelper::resource();
 
         $validator= \Validator::make($request->all(),[
@@ -104,9 +105,10 @@ class DocumentController extends Controller
     }
 
     public function convertPdfToImage(Request $request)
-    {
-        $resource = ApiHelper::resource();
+    {   
+        ini_set('max_execution_time', 0);
 
+        $resource = ApiHelper::resource();
 
         try{
             
