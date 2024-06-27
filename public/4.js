@@ -255,6 +255,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -294,7 +303,8 @@ var STATUS_INITIAL = 0,
       sending: false,
       add_new_signature: false,
       email: null,
-      validate_email: false
+      validate_email: false,
+      link: null
     };
   },
   computed: _objectSpread({
@@ -349,16 +359,6 @@ var STATUS_INITIAL = 0,
 
       // upload data to the server
       this.currentStatus = STATUS_SAVING;
-      /*upload(formData)
-        .then(x => {
-          this.uploadedFiles = [].concat(x);
-          this.currentStatus = STATUS_SUCCESS;
-        })
-        .catch(err => {
-          this.uploadError = err.response;
-          this.currentStatus = STATUS_FAILED;
-        });*/
-
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/documents/convert-pdf', formData).then(function (res) {
         console.log(res);
         _this.document_images = res.data.data.images;
@@ -391,7 +391,7 @@ var STATUS_INITIAL = 0,
           title: 'Envio registrado exitosamente'
         });
 
-        _this2.$router.go(0);
+        _this2.reset_new();
       })["catch"](function (err) {
         console.log(err);
         _this2.sending = false;
@@ -614,6 +614,36 @@ var STATUS_INITIAL = 0,
     validateEmail: function validateEmail() {
       var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       this.validate_email = validEmail.test(this.email);
+    },
+    reset_new: function reset_new() {
+      this.requestModal = false;
+      this.selected = 'Month';
+      this.documents = [];
+      this.step = 1;
+      this.document_images = [];
+      this.current_page = 0;
+      this.uploadedFiles = [];
+      this.uploadError = null;
+      this.fileCount = 0;
+      this.currentStatus = STATUS_INITIAL;
+      this.uploadFieldName = 'photos';
+      this.signature_areas = [];
+      this.current_div = null;
+      this.current_key = null;
+      this.hoverDrawDiv = false;
+      this.user_filter = null;
+      this.users_response = 'Ingresa un dato para la busqueda';
+      this.users = [];
+      this.selected_users = [];
+      this.awaitingSearch = false;
+      this.subject = null;
+      this.message = null;
+      this.document_id = null;
+      this.toasts = [];
+      this.sending = false;
+      this.add_new_signature = false;
+      this.email = null;
+      this.validate_email = false;
     }
   },
   notifications: {
@@ -1084,8 +1114,7 @@ var render = function() {
                                             class: {
                                               "page-item": true,
                                               disabled:
-                                                _vm.current_page + 1 <
-                                                _vm.document_images.length
+                                                _vm.current_page + 1 == 1
                                             }
                                           },
                                           [
@@ -1306,6 +1335,55 @@ var render = function() {
                                 ],
                                 1
                               )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.step == 3,
+                                  expression: "step == 3"
+                                }
+                              ]
+                            },
+                            [
+                              _c("CInput", {
+                                attrs: {
+                                  placeholder: "Password",
+                                  type: "password",
+                                  autocomplete: "curent-password"
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "prepend-content",
+                                      fn: function() {
+                                        return [
+                                          _c("CIcon", {
+                                            attrs: { name: "cil-copy" }
+                                          })
+                                        ]
+                                      },
+                                      proxy: true
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  4100099705
+                                ),
+                                model: {
+                                  value: _vm.link,
+                                  callback: function($$v) {
+                                    _vm.link = $$v
+                                  },
+                                  expression: "link"
+                                }
+                              })
                             ],
                             1
                           )

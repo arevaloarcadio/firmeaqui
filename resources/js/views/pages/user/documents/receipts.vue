@@ -177,6 +177,18 @@ export default {
     getDocumentPath(path){
       window.open(axios.defaults.baseURL+'/'+path, "_blank"); 
     },
+     page(url){
+      if (url == null) {
+        return;
+      }
+      axios.get(url)
+      .then(resp => {
+        this.receipts = resp.data.data
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    },
   }
 }
 </script>

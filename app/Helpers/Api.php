@@ -43,9 +43,9 @@ class Api{
 
         if($resource['error']['status_code'] === 500){
             
-            $user = User::first();
+            //$user = User::first();
 
-            $user->notify(new SendErrorExceptionSlack($exception));
+            //$user->notify(new SendErrorExceptionSlack($exception));
 
             //Notification::route('mail',['arevaloarcadio.96@gmail.com','acevedocarles@gmail.com'])
                 //->notify(new SendErrorException($exception));

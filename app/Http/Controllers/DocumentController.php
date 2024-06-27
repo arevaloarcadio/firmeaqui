@@ -114,7 +114,7 @@ class DocumentController extends Controller
 
             $path = $this->uploadFile($file);
             
-            $num_page = (int) $this->getNumPagePdf($path);
+            $num_page = (int) $this->getNumPagePdf(storage_path('app/'.$path));
             
             $document = new Document;
             $document->path = $path;
@@ -128,7 +128,7 @@ class DocumentController extends Controller
                 $imagick->setResolution(2000,2000);
                 $imagick->flattenImages();
                 $image = 'storage/pdf-images/'.Str::uuid()->toString().'.jpg';
-                $imagick->writeImages(storage_path('app/'.$image),false);
+               $imagick->writeImages(storage_path('app/'.$image),false);
                 
                 $document_image = new DocumentImage;
                 $document_image->document_id = $document->id;
@@ -314,7 +314,7 @@ class DocumentController extends Controller
         
         $path = $directory.$name_2;
         
-        Storage::disk('local')->delete($directory.$name);
+        //Storage::disk('local')->delete($directory.$name);
 
         return $path;
     }

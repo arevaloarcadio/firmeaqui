@@ -60,6 +60,7 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import jwtToken from "@/helpers/jwt-token";
 
 export default {
   name: 'TheHeaderDropdownAccnt',
@@ -75,6 +76,8 @@ export default {
   methods:{
     logout(){
       
+      jwtToken.removeToken()
+
       this.$store.dispatch('unsetAuthUser')
       .then(() => {
         this.$router.push({path: '/pages/login'});

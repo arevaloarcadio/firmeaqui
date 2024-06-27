@@ -372,7 +372,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     CChartBar: _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartBar"]
   },
-  props: _objectSpread({}, _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartBar"].props, {
+  props: _objectSpread(_objectSpread({}, _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartBar"].props), {}, {
     backgroundColor: {
       type: String,
       "default": 'rgba(0,0,0,.2)'
@@ -538,7 +538,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     CChartLine: _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartLine"]
   },
-  props: _objectSpread({}, _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartLine"].props, {
+  props: _objectSpread(_objectSpread({}, _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["CChartLine"].props), {}, {
     borderColor: {
       type: String,
       "default": 'rgba(255,255,255,.55)'

@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 /* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_2__);
+var _methods;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -269,7 +271,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getUser'])),
-  methods: _defineProperty({
+  methods: (_methods = {
     getDocumentPath: function getDocumentPath(users) {
       var _this = this;
 
@@ -288,9 +290,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(err);
       });
     }
-  }, "getDocumentPath", function getDocumentPath(path) {
+  }, _defineProperty(_methods, "getDocumentPath", function getDocumentPath(path) {
     window.open(axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL + '/' + path, "_blank");
-  })
+  }), _defineProperty(_methods, "page", function page(url) {
+    var _this3 = this;
+
+    if (url == null) {
+      return;
+    }
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (resp) {
+      _this3.receipts = resp.data.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }), _methods)
 });
 
 /***/ }),

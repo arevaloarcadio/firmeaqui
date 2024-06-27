@@ -146,7 +146,7 @@ class RequestController extends Controller
                 $request_user->save();
 
                 Notification::route('mail',$user['email'])
-                    ->notify(new NewRequest(Auth::user(),$requests,$user['email']));
+                  ->notify(new NewRequest(Auth::user(),$requests,$user['email']));
 
                 $this->send('channel-'.$user['email'],'receipts',$request_);
             }

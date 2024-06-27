@@ -158,6 +158,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
       return 'Firmado ' + i + ' de ' + users.length + ' usuarios';
+    },
+    page: function page(url) {
+      var _this2 = this;
+
+      if (url == null) {
+        return;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (resp) {
+        _this2.requests = resp.data.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });

@@ -9,7 +9,11 @@ class Document extends Model
 {
     use HasFactory;
 
-   
+    public function template_signs()
+    {
+        return $this->hasMany(SignDocument::class);
+    }
+    
     public function document_images()
     {
         return $this->hasMany(DocumentImage::class);

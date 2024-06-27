@@ -81,7 +81,7 @@
                 <div class="display-center">
                   <nav aria-label="page navigation example">
                     <ul class="pagination justify-content-center">
-                      <li  :class="{'page-item' : true , 'disabled' : (current_page+1) <document_images.length }">
+                      <li  :class="{'page-item' : true , 'disabled' : (current_page+1) == 1 }">
                         <a class="page-link" @click="current_page--" tabindex="-1">Anterior</a>
                       </li>
                       <li class="page-item"><a class="page-link">{{current_page+1}}</a></li>
@@ -202,6 +202,15 @@
                   </CCol>
                 </CRow>
               </div>
+              <div v-show="step == 3">
+                <CInput
+                  placeholder="Password"
+                  type="password"
+                  autocomplete="curent-password"
+                  v-model="link">
+                  <template #prepend-content><CIcon name="cil-copy"/></template>
+                </CInput>
+              </div>
             </div>
           </CCol>
 
@@ -252,26 +261,27 @@ export default {
       current_page : 0,
       uploadedFiles: [],
       uploadError: null,
-      fileCount : 0,
+      fileCount: 0,
       currentStatus: null,
       uploadFieldName: 'photos',
-      signature_areas : [],
-      current_div : null,
-      current_key : null,
-      hoverDrawDiv : false,
-      user_filter : null,
-      users_response : 'Ingresa un dato para la busqueda',
+      signature_areas: [],
+      current_div: null,
+      current_key: null,
+      hoverDrawDiv: false,
+      user_filter: null,
+      users_response: 'Ingresa un dato para la busqueda',
       users: [],
       selected_users: [],
-      awaitingSearch :false,
-      subject : null,
-      message : null,
-      document_id : null,
-      toasts : [],
-      sending : false,
-      add_new_signature : false,
-      email : null,
-      validate_email : false
+      awaitingSearch: false,
+      subject: null,
+      message: null,
+      document_id: null,
+      toasts: [],
+      sending: false,
+      add_new_signature: false,
+      email: null,
+      validate_email: false,
+      link: null
     }
   },
   computed: {
@@ -370,7 +380,7 @@ export default {
           icon: 'success',
           title: 'Envio registrado exitosamente',
         })
-        this.$router.go(0)
+        this.reset_new()
       }).catch(err =>{
         console.log(err)
         this.sending = false;
@@ -591,6 +601,36 @@ export default {
     validateEmail(){
       var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       this.validate_email =  validEmail.test(this.email)
+    },
+    reset_new(){
+      this.requestModal = false;
+      this.selected= 'Month';
+      this.documents =[];
+      this.step = 1;
+      this.document_images = [];
+      this.current_page = 0;
+      this.uploadedFiles= [];
+      this.uploadError= null;
+      this.fileCount= 0;
+      this.currentStatus = STATUS_INITIAL;
+      this.uploadFieldName= 'photos';
+      this.signature_areas= [];
+      this.current_div= null;
+      this.current_key= null;
+      this.hoverDrawDiv= false;
+      this.user_filter= null;
+      this.users_response= 'Ingresa un dato para la busqueda';
+      this.users= [];
+      this.selected_users= [];
+      this.awaitingSearch= false;
+      this.subject= null;
+      this.message= null;
+      this.document_id= null;
+      this.toasts= [];
+      this.sending= false;
+      this.add_new_signature= false;
+      this.email= null;
+      this.validate_email= false;
     } 
   },
   notifications: {

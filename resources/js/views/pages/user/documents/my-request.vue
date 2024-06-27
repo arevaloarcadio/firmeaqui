@@ -137,7 +137,19 @@ export default {
         }
       })
       return 'Firmado '+i+' de '+ users.length +' usuarios' 
-    }
+    },
+    page(url){
+      if (url == null) {
+        return;
+      }
+      axios.get(url)
+      .then(resp => {
+        this.requests = resp.data.data
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    },
   }
 }
 </script>

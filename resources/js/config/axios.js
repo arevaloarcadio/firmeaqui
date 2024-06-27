@@ -15,8 +15,8 @@ const ERRORS = [
   'Token is Expired'
 ];
 
-//axios.defaults.baseURL = 'https://firmeaqui.infutura.es';
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://firmeaqui.infutura.es';
+//axios.defaults.baseURL = 'http://localhost:8000';
 
 Vue.prototype.$http = axios;
 
@@ -104,7 +104,13 @@ axios.interceptors.response.use(
         icon: 'error',
         title: 'Autenticación fallida, por favor inicie sesión nuevamente',
       })
-    
+      
+      const route = '/pages/login';
+      const { name, path } = router.currentRoute;
+      if (name !== 'Login' || path !== route) {
+        router.push({ path: route });
+      }
+
     }else{
       Vue.prototype.$toast.fire({
         icon: 'error',

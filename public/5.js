@@ -258,7 +258,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     save_sign: function save_sign() {
       var _this4 = this;
 
-      console.log("sfsfsdf");
       this.signModal = false;
 
       var _this$$refs$signature = this.$refs.signaturePad.saveSignature(),
@@ -611,10 +610,7 @@ var render = function() {
                                 {
                                   class: {
                                     "page-item": true,
-                                    disabled:
-                                      _vm.current_page + 1 <
-                                      _vm.request.document.document_images
-                                        .length
+                                    disabled: _vm.current_page + 1 == 1
                                   }
                                 },
                                 [

@@ -35,7 +35,7 @@
             <div class="display-center">
               <nav aria-label="page navigation example">
                 <ul class="pagination justify-content-center">
-                  <li  :class="{'page-item' : true , 'disabled' : (current_page+1) < request.document.document_images.length }">
+                  <li  :class="{'page-item' : true , 'disabled' : (current_page+1) == 1 }">
                     <a class="page-link" @click="current_page--" tabindex="-1">Anterior</a>
                   </li>
                   <li class="page-item"><a class="page-link">{{current_page+1}}</a></li>
@@ -245,7 +245,6 @@ export default {
       this.$refs.signaturePad.clearSignature();
     },
     save_sign(){
-         console.log("sfsfsdf")
       this.signModal = false
       
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
